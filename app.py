@@ -12,7 +12,7 @@ USERNAME=""
 PASSWORD=""
 
 def get_credentials(username, password):
-    
+
     """Get AWS credentials"""
     idp_client = boto3.client("cognito-idp", region_name=REGION)
     response = idp_client.initiate_auth(
@@ -36,6 +36,7 @@ def get_credentials(username, password):
     return creds_response["Credentials"]
 
 def invoke_bedrock(prompt_text, max_tokens=640, temperature=0.3, top_p=0.9):
+
     """Invoke Bedrock Claude"""
     credentials = get_credentials(USERNAME, PASSWORD)
 
@@ -48,6 +49,7 @@ def invoke_bedrock(prompt_text, max_tokens=640, temperature=0.3, top_p=0.9):
     )
 
     payload = {
+        
         "anthropic_version": "bedrock-2023-05-31",
         "max_tokens": max_tokens,
         "temperature": temperature,
