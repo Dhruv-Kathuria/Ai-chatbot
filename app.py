@@ -12,6 +12,7 @@ USERNAME=""
 PASSWORD=""
 
 def get_credentials(username, password):
+    
     """Get AWS credentials"""
     idp_client = boto3.client("cognito-idp", region_name=REGION)
     response = idp_client.initiate_auth(
